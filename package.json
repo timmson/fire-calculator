@@ -26,6 +26,9 @@
     "webpack-cli": "^4.7.0"
   },
   "scripts": {
+    "lint": "npx eslint ./src ./test --fix",
+    "test": "npx jest",
+    "coverage": "npx jest --collectCoverage",
     "watch": "npx webpack --mode development --watch",
     "dev": "npx webpack --mode development",
     "prod": "npx webpack --mode production"
