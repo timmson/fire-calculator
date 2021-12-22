@@ -1,0 +1,42 @@
+{
+  "name": "fire-calculator",
+  "version": "1.0",
+  "description": "F.I.R.E calculator",
+  "private": true,
+  "dependencies": {
+    "accounting": "^0.4.1",
+    "bootstrap": "^4.6.0",
+    "jquery": "^3.6.0",
+    "popper.js": "^1.16.1",
+    "vue": "^2.6.12"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.14.2",
+    "@types/jest": "27.0.3",
+    "babel-loader": "8.2.2",
+    "babel-polyfill": "^6.26.0",
+    "css-loader": "^5.2.4",
+    "eslint": "8.5.0",
+    "jest": "27.4.5",
+    "mini-css-extract-plugin": "^1.6.0",
+    "node-sass": "^6.0.0",
+    "postcss-loader": "^5.3.0",
+    "sass-loader": "^11.1.1",
+    "webpack": "^5.37.0",
+    "webpack-cli": "^4.7.0"
+  },
+  "scripts": {
+    "watch": "npx webpack --mode development --watch",
+    "dev": "npx webpack --mode development",
+    "prod": "npx webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/timmson/fire-calculator.js.git"
+  },
+  "author": "timmnson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/timmson/fire-calculator/issues"
+  }
+}
