@@ -5,7 +5,11 @@ import Vue from "vue";
 import Accounting from "accounting";
 import ScheduleBuilder from "./schedule-builder";
 
-const scheduleBuilder = new ScheduleBuilder();
+const Privilege = {
+	NONE: "NONE",
+	A: "A",
+	B: "B"
+};
 
 const telegramShareUrl = "https://t.me/share/url";
 const params = new URL(window.location.href).searchParams;
@@ -14,6 +18,9 @@ const request = {
 	monthlyAmount: params.get("monthlyAmount") || "15000",
 	startDate: params.get("startDate") || new Intl.DateTimeFormat("ru").format(new Date()),
 	rate: params.get("rate") || 4,
+	tax: params.get("tax") || 13,
+	taxPrivilege: params.get("taxPrivilege") || Privilege.NONE,
+	taxPrivilegeAmount: 400000,
 	targetIncome: params.get("targetIncome") || "10000",
 };
 
@@ -35,8 +42,11 @@ new Vue({
 			this.request.monthlyAmount = this.fromMoney(this.request.monthlyAmount);
 			this.request.targetIncome = this.fromMoney(this.request.targetIncome);
 			this.request.monthlyRate = this.request.rate / (12 * 100);
+			this.request.taxRate = this.request.tax / 100;
+			this.request.taxPrivilegeMonthlyAmount = this.request.taxPrivilegeAmount / 12;
 
-			this.schedule = scheduleBuilder.build(this.request);
+			console.log(this.request.taxPrivilege);
+			this.schedule = new ScheduleBuilder(this.request).build();
 
 			this.request.startDate = this.toDate(this.request.startDate);
 

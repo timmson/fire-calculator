@@ -45,16 +45,33 @@
                 <input id="rate" v-model="request.rate" class="form-control" placeholder="%"/>
             </div>
         </div>
+        <div class="row mt-5 text-left">
+            <div class="col-sm-3 pt-2">
+                <label for="tax">Income Tax, %</label>
+            </div>
+            <div class="col-sm-3">
+                <input id="tax" v-model="request.tax" class="form-control" placeholder="%">
+            </div>
+        </div>
+        <div class="row mt-5 text-left">
+            <div class="col-sm-3 pt-2">
+                <p>Tax privilege</p>
+            </div>
+            <div class="col-sm-9">
+                <input id="privilege-none" v-model="request.taxPrivilege" type="radio" value="NONE"/>
+                <label for="privilege-none">No</label>
+                &nbsp;
+                <input id="privilege-a" v-model="request.taxPrivilege" type="radio" value="A"/>
+                <label for="privilege-a">Contribution deduction aka "ИИС" типа A</label>
+                &nbsp;
+                <input id="privilege-b" v-model="request.taxPrivilege" type="radio" value="B"/>
+                <label for="privilege-b">Deduction for income aka "ИИС" типа B</label>
+            </div>
+        </div>
         <hr/>
         <div class="row mt-5 text-left">
-            <!--            <div class="col-sm-3 pt-2">
-                            <label for="term">Term, months</label>
-                        </div>
-                        <div class="col-sm-3">
-                            <input class="form-control" id="term" placeholder="Term, month" v-model="request.term"/>
-                        </div>-->
             <div class="col-sm-3 pt-2">
-                <label for="targetIncome">Target Income, $</label>
+                <label for="targetIncome">Target Net Income, $</label>
             </div>
             <div class="col-sm-3">
                 <input id="targetIncome" v-model="request.targetIncome" class="form-control" placeholder="Target income, $"/>
@@ -80,31 +97,24 @@
         <div class="col-sm-12 text-center">
             <table id="schedule" class="table-bordered w-100">
                 <tr>
-                    <th rowspan="2">Date</th>
-                    <th rowspan="2">Initial balance, $</th>
-                    <th rowspan="2">Increment, $</th>
-                    <th colspan="2">Inc.</th>
-                    <th rowspan="2">Final balance, $</th>
-                </tr>
-                <tr>
+                    <th>Date</th>
+                    <th>Initial balance, $</th>
                     <th>Deposit, $</th>
                     <th>Dividends, $</th>
+                    <th>Tax, $</th>
+                    <th>Increment, $</th>
+                    <th>Final balance, $</th>
+                </tr>
+                <tr>
                 </tr>
                 <tr v-for="increment in schedule.increments" v-if="schedule" class="pays">
                     <td>{{ toDate(increment.date) }}</td>
                     <td>{{ toMoney(increment.initialBalance) }}</td>
-                    <td>{{ toMoney(increment.incrementAmount) }}</td>
                     <td>{{ toMoney(increment.monthlyAmount) }}</td>
                     <td>{{ toMoney(increment.dividendAmount) }}</td>
+                    <td>{{ toMoney(increment.taxAmount) }}</td>
+                    <td>{{ toMoney(increment.incrementAmount) }}</td>
                     <td>{{ toMoney(increment.finalBalance) }}</td>
-                </tr>
-                <tr v-if="schedule" class="pays">
-                    <td>&nbsp;</td>
-                    <td>{{ toMoney(schedule.fullAmount) }}</td>
-                    <td>&nbsp;</td>
-                    <td>{{ toMoney(schedule.amount) }}</td>
-                    <td>{{ toMoney(schedule.overAllInterest) }}</td>
-                    <td>&nbsp;</td>
                 </tr>
             </table>
         </div>
