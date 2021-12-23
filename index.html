@@ -68,7 +68,7 @@
     <div class="row mt-5">
         <div class="col-sm-9">
             <div style="color:#fd680e;">
-                {{ toMoney(schedule.targetAmount) }}, {{ schedule.lastPaymentDate }} (~{{ schedule.termInYear }}Y)
+                {{ toMoney(schedule.targetAmount) }}, {{ toDate(schedule.lastPaymentDate) }} (~{{ schedule.termInYear }}Y)
             </div>
         </div>
         <div class="col-sm-3 text-right">

@@ -1,29 +1,14 @@
 import "bootstrap";
 import "./index.scss";
 
-import Accounting from "accounting";
 import Vue from "vue";
+import Accounting from "accounting";
+import ScheduleBuilder from "./schedule-builder";
 
-function buildIncrement(date, initialBalance, monthlyAmount, monthlyRate) {
-	const increment = {
-		date: date,
-		initialBalance: initialBalance,
-		monthlyRate: monthlyRate
-	};
-	increment.dividendAmount = increment.initialBalance * increment.monthlyRate;
-
-	const amounts = [monthlyAmount + increment.dividendAmount, monthlyAmount].sort();
-	increment.monthlyAmount = amounts[0];
-	increment.incrementAmount = amounts[1];
-
-	increment.finalBalance = increment.initialBalance + increment.incrementAmount;
-	return increment;
-}
+const scheduleBuilder = new ScheduleBuilder();
 
 const telegramShareUrl = "https://t.me/share/url";
-
 const params = new URL(window.location.href).searchParams;
-
 const request = {
 	startAmount: params.get("startAmount") || "50000",
 	monthlyAmount: params.get("monthlyAmount") || "15000",
@@ -45,38 +30,13 @@ new Vue({
 	methods: {
 
 		updateSchedule: function () {
+			this.request.startDate = this.fromDate(this.request.startDate);
 			this.request.startAmount = this.fromMoney(this.request.startAmount);
 			this.request.monthlyAmount = this.fromMoney(this.request.monthlyAmount);
 			this.request.targetIncome = this.fromMoney(this.request.targetIncome);
-			this.request.startDate = this.fromDate(this.request.startDate);
-			const monthlyRate = this.request.rate / (12 * 100);
+			this.request.monthlyRate = this.request.rate / (12 * 100);
 
-			this.schedule = {};
-			const initialIncrement = buildIncrement(this.request.startDate, 0, this.request.startAmount, monthlyRate);
-			this.schedule.increments = [initialIncrement];
-
-			let i = 1;
-			let currentIncome = this.schedule.increments[this.schedule.increments.length - 1].dividendAmount;
-			while (currentIncome < this.request.targetIncome) {
-				const lastDate = this.schedule.increments[i - 1].date;
-
-				const increment = buildIncrement(
-					new Date(lastDate.getFullYear(), lastDate.getMonth() + 1, lastDate.getDate()),
-					this.schedule.increments[i - 1].finalBalance,
-					this.request.monthlyAmount,
-					monthlyRate
-				);
-
-				this.schedule.increments.push(increment);
-
-				currentIncome = this.schedule.increments[this.schedule.increments.length - 1].dividendAmount;
-				i++;
-			}
-
-			this.schedule.targetAmount = this.toMoney(this.schedule.increments[this.schedule.increments.length - 1].finalBalance);
-			this.schedule.lastPaymentDate = this.toDate(this.schedule.increments[this.schedule.increments.length - 1].date);
-			this.schedule.termInYear = Math.ceil(i / 12);
-
+			this.schedule = scheduleBuilder.build(this.request);
 
 			this.request.startDate = this.toDate(this.request.startDate);
 
