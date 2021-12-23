@@ -4,7 +4,6 @@ import "./index.scss";
 import Accounting from "accounting";
 import Vue from "vue";
 
-
 function buildIncrement(date, initialBalance, monthlyAmount, monthlyRate) {
 	const increment = {
 		date: date,
@@ -21,7 +20,7 @@ function buildIncrement(date, initialBalance, monthlyAmount, monthlyRate) {
 	return increment;
 }
 
-//const telegramShareUrl = "https://t.me/share/url";
+const telegramShareUrl = "https://t.me/share/url";
 
 const params = new URL(window.location.href).searchParams;
 
@@ -29,7 +28,7 @@ const request = {
 	startAmount: params.get("startAmount") || "50000",
 	monthlyAmount: params.get("monthlyAmount") || "15000",
 	startDate: params.get("startDate") || new Intl.DateTimeFormat("ru").format(new Date()),
-	rate: params.get("percent") || 4,
+	rate: params.get("rate") || 4,
 	targetIncome: params.get("targetIncome") || "10000",
 };
 
@@ -78,10 +77,20 @@ new Vue({
 			this.schedule.lastPaymentDate = this.toDate(this.schedule.increments[this.schedule.increments.length - 1].date);
 			this.schedule.termInYear = Math.ceil(i / 12);
 
+
+			this.request.startDate = this.toDate(this.request.startDate);
+
+			params.set("startAmount", this.request.startAmount);
+			params.set("monthlyAmount", this.request.monthlyAmount);
+			params.set("startDate", this.request.startDate);
+			params.set("rate", this.request.rate);
+			params.set("targetIncome", this.request.targetIncome);
+			window.history.replaceState({}, "F.I.R.E. Calculator", "?" + params.toString());
+			this.shareUrl = `${telegramShareUrl}?url=${encodeURIComponent(window.location.href)}`;
+
 			this.request.startAmount = this.toMoney(this.request.startAmount);
 			this.request.monthlyAmount = this.toMoney(this.request.monthlyAmount);
 			this.request.targetIncome = this.toMoney(this.request.targetIncome);
-			this.request.startDate = this.toDate(this.request.startDate);
 		},
 
 		toDate: function (date) {
