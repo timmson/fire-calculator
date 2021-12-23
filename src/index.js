@@ -26,11 +26,11 @@ function buildIncrement(date, initialBalance, monthlyAmount, monthlyRate) {
 const params = new URL(window.location.href).searchParams;
 
 const request = {
-	startAmount: params.get("startAmount") || "-5000000",
-	monthlyAmount: params.get("monthlyAmount") || "150000",
+	startAmount: params.get("startAmount") || "50000",
+	monthlyAmount: params.get("monthlyAmount") || "15000",
 	startDate: params.get("startDate") || new Intl.DateTimeFormat("ru").format(new Date()),
 	rate: params.get("percent") || 4,
-	targetIncome: params.get("targetIncome") || "40000",
+	targetIncome: params.get("targetIncome") || "10000",
 };
 
 new Vue({
