@@ -11,6 +11,7 @@ class ScheduleBuilder {
 
 		let i = 1;
 		let currentIncome = schedule.increments[schedule.increments.length - 1].dividendAmount;
+		console.log(currentIncome);
 		while (currentIncome < this.request.targetIncome) {
 			const lastDate = schedule.increments[i - 1].date;
 
@@ -21,7 +22,7 @@ class ScheduleBuilder {
 
 			schedule.increments.push(increment);
 
-			currentIncome = schedule.increments[schedule.increments.length - 1].dividendAmount;
+			currentIncome = schedule.increments[schedule.increments.length - 1].dividendAmount + schedule.increments[schedule.increments.length - 1].projectedTaxAmount;
 			i++;
 		}
 
@@ -48,10 +49,12 @@ class ScheduleBuilder {
 
 			increment.monthlyAmount = monthlyDeposit;
 
+			increment.projectedTaxAmount = -increment.dividendAmount * increment.taxRate;
+
 			if (this.request.taxPrivilege === "B") {
 				increment.taxAmount = 0;
 			} else {
-				increment.taxAmount = -increment.dividendAmount * increment.taxRate;
+				increment.taxAmount = increment.projectedTaxAmount;
 
 				if (this.request.taxPrivilege === "A") {
 					increment.taxAmount += Math.min(this.request.taxPrivilegeMonthlyAmount, monthlyDeposit) * increment.taxRate;

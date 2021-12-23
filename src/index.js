@@ -14,14 +14,14 @@ const Privilege = {
 const telegramShareUrl = "https://t.me/share/url";
 const params = new URL(window.location.href).searchParams;
 const request = {
-	startAmount: params.get("startAmount") || "50000",
-	monthlyAmount: params.get("monthlyAmount") || "15000",
+	startAmount: params.get("startAmount") || "100000",
+	monthlyAmount: params.get("monthlyAmount") || "50000",
 	startDate: params.get("startDate") || new Intl.DateTimeFormat("ru").format(new Date()),
 	rate: params.get("rate") || 4,
 	tax: params.get("tax") || 13,
 	taxPrivilege: params.get("taxPrivilege") || Privilege.NONE,
 	taxPrivilegeAmount: 400000,
-	targetIncome: params.get("targetIncome") || "10000",
+	targetIncome: params.get("targetIncome") || "30000",
 };
 
 new Vue({
@@ -45,7 +45,6 @@ new Vue({
 			this.request.taxRate = this.request.tax / 100;
 			this.request.taxPrivilegeMonthlyAmount = this.request.taxPrivilegeAmount / 12;
 
-			console.log(this.request.taxPrivilege);
 			this.schedule = new ScheduleBuilder(this.request).build();
 
 			this.request.startDate = this.toDate(this.request.startDate);
