@@ -1,6 +1,9 @@
 name: Node CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -9,12 +12,12 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
 
@@ -23,10 +26,8 @@ jobs:
         npm i
         npm run lint
         npm run coverage
-#       npx codecov
       env:
         CI: true
-#        CODECOV_TOKEN: 000c0032-edb5-4b49-a413-e98f16a5623d
 
     - name: Lint and coverage
       run: |
