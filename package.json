@@ -1,6 +1,6 @@
 {
   "name": "fire-calculator",
-  "version": "1.0",
+  "version": "2.0",
   "description": "F.I.R.E calculator",
   "private": true,
   "dependencies": {
@@ -16,14 +16,15 @@
     "babel-loader": "8.2.2",
     "babel-polyfill": "^6.26.0",
     "css-loader": "^5.2.4",
-    "eslint": "8.5.0",
+    "eslint": "^8.5.0",
     "jest": "^29.5.0",
     "mini-css-extract-plugin": "^1.6.0",
-    "node-sass": "^7.0.3",
+    "node-sass": "^8.0.0",
     "postcss-loader": "^5.3.0",
     "sass-loader": "^13.2.2",
     "webpack": "^5.76.0",
-    "webpack-cli": "^5.1.1"
+    "webpack-cli": "^5.1.1",
+    "webpack-dev-server": "^4.9.3"
   },
   "scripts": {
     "lint": "npx eslint ./src ./test --fix",
@@ -31,7 +32,8 @@
     "coverage": "npx jest --collectCoverage",
     "watch": "npx webpack --mode development --watch",
     "dev": "npx webpack --mode development",
-    "prod": "npx webpack --mode production"
+    "prod": "npx webpack --mode production",
+    "start": "npx webpack serve --mode development"
   },
   "repository": {
     "type": "git",
