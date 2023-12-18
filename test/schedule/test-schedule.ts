@@ -1,4 +1,4 @@
-import ScheduleBuilder from "../src/schedule-builder"
+import ScheduleBuilder from "../../src/schedule/schedule-builder"
 
 describe("Schedule should", () => {
 

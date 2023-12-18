@@ -1,134 +1,15 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="description">
     <meta content="" name="author">
-
     <title>F.I.R.E. Calculator</title>
-
     <link href="index.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-<div id="app" class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark p-2">
-        <h3 style="color:#fd680e;">F.I.R.E. Calculator</h3>
-    </nav>
-    <form class="form-horizontal" role="form" @change="updateSchedule">
-        <div class="row mt-5 text-left">
-            <div class="col-sm-3 pt-2">
-                <label for="startAmount">Start amount, $</label>
-            </div>
-            <div class="col-sm-3">
-                <input id="startAmount" v-model="request.startAmount" class="form-control" placeholder="Start amount"/>
-            </div>
-            <div class="col-sm-3 pt-2">
-                <label for="monthlyAmount">Monthly deposit, $</label>
-            </div>
-            <div class="col-sm-3">
-                <input id="monthlyAmount" v-model="request.monthlyAmount" class="form-control" placeholder="Monthly amount">
-            </div>
-        </div>
-        <div class="row mt-5 text-left">
-            <div class="col-sm-3 pt-2">
-                <label for="startDate">Start date</label>
-            </div>
-            <div class="col-sm-3">
-                <input id="startDate" v-model="request.startDate" class="form-control" placeholder="dd.mm.yyyy" type="text">
-            </div>
-            <div class="col-sm-3 pt-2">
-                <label for="rate">Annual rate, %</label>
-            </div>
-            <div class="col-sm-3">
-                <input id="rate" v-model="request.rate" class="form-control" placeholder="%"/>
-            </div>
-        </div>
-        <div class="row mt-5 text-left">
-            <div class="col-sm-3 pt-2">
-                <label for="tax">Income Tax, %</label>
-            </div>
-            <div class="col-sm-3">
-                <input id="tax" v-model="request.tax" class="form-control" placeholder="%">
-            </div>
-        </div>
-        <div class="row mt-5 text-left">
-            <div class="col-sm-3 pt-2">
-                <p>Tax privilege</p>
-            </div>
-            <div class="col-sm-9">
-                <input id="privilege-none" v-model="request.taxPrivilege" type="radio" value="NONE"/>
-                <label for="privilege-none">No</label>
-                &nbsp;
-                <input id="privilege-a" v-model="request.taxPrivilege" type="radio" value="A"/>
-                <label for="privilege-a">Contribution deduction aka "ИИС" типа A</label>
-                &nbsp;
-                <input id="privilege-b" v-model="request.taxPrivilege" type="radio" value="B"/>
-                <label for="privilege-b">Deduction for income aka "ИИС" типа B</label>
-            </div>
-        </div>
-        <hr/>
-        <div class="row mt-5 text-left">
-            <div class="col-sm-3 pt-2">
-                <label for="targetIncome">Target Net Income, $</label>
-            </div>
-            <div class="col-sm-3">
-                <input id="targetIncome" v-model="request.targetIncome" class="form-control" placeholder="Target income, $"/>
-            </div>
-            <div class="col-sm-6 pt-2">
-                &nbsp;
-            </div>
-        </div>
-    </form>
-    <hr/>
-    <div class="row mt-5">
-        <div class="col-sm-9">
-            <div style="color:#fd680e;">
-                {{ toMoney(schedule.targetAmount) }}, {{ toDate(schedule.lastPaymentDate) }} (~{{ schedule.termInYear }}Y)
-            </div>
-        </div>
-        <div class="col-sm-3 text-right">
-            <a target="_blank" v-bind:href="shareUrl">[Share via TG]</a>
-            <a id="header" href="#footer">[Bottom &darr;]</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12 text-center">
-            <table id="schedule" class="table-bordered w-100">
-                <tr>
-                    <th>Date</th>
-                    <th>Initial balance, $</th>
-                    <th>Deposit, $</th>
-                    <th>Dividends, $</th>
-                    <th>Tax, $</th>
-                    <th>Increment, $</th>
-                    <th>Final balance, $</th>
-                </tr>
-                <tr>
-                </tr>
-                <tr v-for="increment in schedule.increments" v-if="schedule" class="pays">
-                    <td>{{ toDate(increment.date) }}</td>
-                    <td>{{ toMoney(increment.initialBalance) }}</td>
-                    <td>{{ toMoney(increment.monthlyAmount) }}</td>
-                    <td>{{ toMoney(increment.dividendAmount) }}</td>
-                    <td>{{ toMoney(increment.taxAmount) }}</td>
-                    <td>{{ toMoney(increment.incrementAmount) }}</td>
-                    <td>{{ toMoney(increment.finalBalance) }}</td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12 text-right">
-            <a id="footer" href="#header">[Top &uarr;]</a>
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col-sm-12 text-right">
-            <p class="copyright">Copyright &copy; <span>{{ currentYear }}</span> - Designed by timmson</p>
-        </div>
-    </div>
-</div>
+<div id="app"></div>
 <script src="index.js"></script>
 </body>

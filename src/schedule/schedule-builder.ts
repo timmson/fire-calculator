@@ -1,4 +1,4 @@
-import {RequestType, ScheduleIncrementType, ScheduleType} from "./types"
+import {RequestType, ScheduleIncrementType, ScheduleType} from "../types"
 
 class ScheduleBuilder {
 
@@ -8,7 +8,7 @@ class ScheduleBuilder {
 		this.request = request
 	}
 
-	build() {
+	build(): ScheduleType {
 		const schedule: ScheduleType = {increments : []}
 		const initialIncrement = this.buildIncrement(this.request.startDate, 0, parseFloat(this.request.startAmount))
 		schedule.increments = [initialIncrement]
