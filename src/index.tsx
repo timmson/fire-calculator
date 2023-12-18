@@ -7,11 +7,14 @@ import {Store} from "./redux/store"
 import {App} from "./app"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faTelegram} from "@fortawesome/free-brands-svg-icons"
+import {saveState} from "./redux/persiste"
 
 const currentYear = new Date().getFullYear()
 const shareUrl = () => {
 	window.open(`https://t.me/share/url?url=${encodeURIComponent(window.location.href)}`, "blank")
 }
+
+Store.subscribe(() => saveState(Store.getState()))
 
 const root = createRoot(document.getElementById("app"))
 root.render(

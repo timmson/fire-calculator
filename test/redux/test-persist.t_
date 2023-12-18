@@ -1,0 +1,16 @@
+import {RootState} from "../../src/redux/store"
+import {clearState, loadState, saveState} from "../../src/redux/persiste"
+
+describe("Persist should", () => {
+
+	test("save, load and clean", () => {
+		const rootState: RootState = {state: {}}
+
+		saveState(rootState)
+		expect(loadState()).toEqual(rootState)
+
+		clearState()
+		expect(loadState()).toBeUndefined()
+	})
+
+})
