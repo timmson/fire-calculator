@@ -2,16 +2,19 @@ import {fromDate, toDate} from "../util/date"
 import {fromMoney, toMoney} from "../util/money"
 import ScheduleBuilder from "../schedule/schedule-builder"
 import {State, StateSchedule} from "./reducer"
+import {RequestType} from "../schedule/types"
 
 export const buildSchedule = (state: State): StateSchedule => {
-	const request = {
+	const request: RequestType = {
 		startDate: fromDate(state.startDate),
 		startAmount: fromMoney(state.startAmount),
 		monthlyAmount: fromMoney(state.monthlyAmount),
-		monthlyRate: fromMoney(state.rate) / (100 * 12),
+		incomeRate: fromMoney(state.rate) / 100,
 		targetIncome: fromMoney(state.targetIncome),
-		taxRate: 0,
-		taxPrivilege: "NONE"
+		taxRate: fromMoney(state.tax) / 100,
+		taxContributionRecover: state.taxContributionRecover,
+		taxContributionRecoverLimit: 400000.00,
+		taxIncomeFree: state.taxIncomeFree,
 	}
 
 	const schedule = new ScheduleBuilder(request).build()
@@ -25,6 +28,7 @@ export const buildSchedule = (state: State): StateSchedule => {
 				date: toDate(it.date),
 				initialBalance: toMoney(it.initialBalance),
 				monthlyAmount: toMoney(it.monthlyAmount),
+				recoverAmount: toMoney(it.recoverAmount),
 				dividendAmount: toMoney(it.dividendAmount),
 				taxAmount: toMoney(it.taxAmount),
 				incrementAmount: toMoney(it.incrementAmount),

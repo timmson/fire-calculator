@@ -1,5 +1,4 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit"
-import {Privilege} from "../types"
 import {buildSchedule} from "./api"
 
 export interface StateSchedule {
@@ -10,6 +9,7 @@ export interface StateSchedule {
 		date: string
 		initialBalance: string
 		monthlyAmount: string
+		recoverAmount: string
 		dividendAmount: string
 		taxAmount: string
 		incrementAmount: string
@@ -23,8 +23,8 @@ export interface State {
 	startDate: string
 	rate: string
 	tax: string
-	taxPrivilege: Privilege,
-	taxPrivilegeAmount: string
+	taxContributionRecover: boolean
+	taxIncomeFree: boolean
 	targetIncome: string
 	schedule: StateSchedule
 }
@@ -35,8 +35,8 @@ const initialState: State = {
 	startDate: new Intl.DateTimeFormat("ru").format(new Date()),
 	rate: "10",
 	tax: "13",
-	taxPrivilege: Privilege.NONE,
-	taxPrivilegeAmount: "0",
+	taxContributionRecover: false,
+	taxIncomeFree: false,
 	targetIncome: "50000",
 	schedule: {
 		termInYear: 0,
@@ -50,7 +50,7 @@ export const Slice = createSlice({
 	name: "state",
 	initialState,
 	reducers: {
-		updateRequestField: (state: State, action: PayloadAction<{ key: string, value: string }>) => {
+		updateRequestField: (state: State, action: PayloadAction<{ key: string, value: string | boolean }>) => {
 			state[action.payload.key] = action.payload.value
 			state.schedule = buildSchedule(state)
 		},

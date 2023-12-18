@@ -1,20 +1,12 @@
-export enum Privilege {
-    NONE = "NONE",
-    A = "A",
-    B = "B"
-}
-
 export type RequestType = {
-    taxPrivilegeMonthlyAmount: number,
-    startAmount: string,
-    monthlyAmount: string,
+    startAmount: number,
+    monthlyAmount: number,
     startDate: Date,
-    rate: number,
-    tax: number,
-    taxPrivilege: Privilege,
-    taxPrivilegeAmount: number,
+    incomeRate: number,
+	taxContributionRecover: boolean
+    taxContributionRecoverLimit: number,
+	taxIncomeFree: boolean
     targetIncome: number,
-    monthlyRate: number,
     taxRate: number
 }
 
@@ -28,6 +20,7 @@ export type ScheduleIncrementType = {
     taxAmount?: number,
     projectedTaxAmount?: number,
     monthlyAmount?: number,
+    recoverAmount?: number,
     dividendAmount?: number
     finalBalance?: number
 }

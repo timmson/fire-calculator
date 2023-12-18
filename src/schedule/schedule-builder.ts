@@ -1,16 +1,16 @@
-import {RequestType, ScheduleIncrementType, ScheduleType} from "../types"
+import {RequestType, ScheduleIncrementType, ScheduleType} from "./types"
 
 class ScheduleBuilder {
 
 	private request: RequestType
 
-	constructor(request) {
+	constructor(request: RequestType) {
 		this.request = request
 	}
 
 	build(): ScheduleType {
-		const schedule: ScheduleType = {increments : []}
-		const initialIncrement = this.buildIncrement(this.request.startDate, 0, parseFloat(this.request.startAmount))
+		const schedule: ScheduleType = {increments: []}
+		const initialIncrement = this.buildIncrement(this.request.startDate, 0, this.request.startAmount)
 		schedule.increments = [initialIncrement]
 
 		let i = 1
@@ -40,37 +40,30 @@ class ScheduleBuilder {
 		const increment: ScheduleIncrementType = {
 			date: date,
 			initialBalance: initialBalance,
-			monthlyRate: this.request.monthlyRate,
-			taxRate: this.request.taxRate
+			monthlyRate: this.request.incomeRate / 12,
+			taxRate: this.request.taxRate,
+			recoverAmount: 0
 		}
 
-		const monthlyDeposit = deposit || parseFloat(this.request.monthlyAmount)
+		const monthlyDeposit = deposit || this.request.monthlyAmount
 
 		increment.dividendAmount = increment.initialBalance * increment.monthlyRate
+		increment.projectedTaxAmount = -increment.dividendAmount * increment.taxRate
+
+		if (increment.initialBalance >= 0 && monthlyDeposit >= 0) {
+			increment.recoverAmount = this.request.taxContributionRecover ? Math.min(this.request.taxContributionRecoverLimit / 12, monthlyDeposit) * increment.taxRate : 0
+		}
 
 		if (increment.dividendAmount >= 0) {
-
 			increment.monthlyAmount = monthlyDeposit
-
-			increment.projectedTaxAmount = -increment.dividendAmount * increment.taxRate
-
-			if (this.request.taxPrivilege === "B") {
-				increment.taxAmount = 0
-			} else {
-				increment.taxAmount = increment.projectedTaxAmount
-
-				if (this.request.taxPrivilege === "A") {
-					increment.taxAmount += Math.min(this.request.taxPrivilegeMonthlyAmount, monthlyDeposit) * increment.taxRate
-				}
-			}
-
-			increment.incrementAmount = increment.monthlyAmount + increment.dividendAmount + increment.taxAmount
+			increment.taxAmount = this.request.taxIncomeFree ? 0 : increment.projectedTaxAmount
 		} else {
 			increment.taxAmount = 0
 			increment.incrementAmount = monthlyDeposit
 			increment.monthlyAmount = increment.incrementAmount + increment.dividendAmount
 		}
 
+		increment.incrementAmount = increment.monthlyAmount + increment.dividendAmount + increment.taxAmount + increment.recoverAmount
 		increment.finalBalance = increment.initialBalance + increment.incrementAmount
 
 		return increment
