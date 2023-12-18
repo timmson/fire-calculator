@@ -1,5 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit"
 import {buildSchedule} from "./api"
+import {fromMoney, toMoney} from "../util/money"
 
 export interface StateSchedule {
 	termInYear?: number
@@ -30,14 +31,14 @@ export interface State {
 }
 
 const initialState: State = {
-	startAmount: "50000",
-	monthlyAmount: "10000",
+	startAmount: "50 000.00",
+	monthlyAmount: "10 000.00",
 	startDate: new Intl.DateTimeFormat("ru").format(new Date()),
-	rate: "10",
-	tax: "13",
+	rate: "7.5",
+	tax: "13.0",
 	taxContributionRecover: false,
 	taxIncomeFree: false,
-	targetIncome: "50000",
+	targetIncome: "50 000.00",
 	schedule: {
 		termInYear: 0,
 		targetAmount: "",
@@ -52,14 +53,25 @@ export const Slice = createSlice({
 	reducers: {
 		updateRequestField: (state: State, action: PayloadAction<{ key: string, value: string | boolean }>) => {
 			state[action.payload.key] = action.payload.value
-			state.schedule = buildSchedule(state)
+			try {
+				state.schedule = buildSchedule(state)
+			} catch (ignore) {
+				console.error(ignore)
+			}
 		},
 		updateSchedule: (state: State) => {
-			state.schedule = buildSchedule(state)
+			try {
+				state.schedule = buildSchedule(state)
+			} catch (ignore) {
+				console.error(ignore)
+			}
+		},
+		formatRequestField: (state: State, action: PayloadAction<{ key: string, value: string }>) => {
+			state[action.payload.key] = toMoney(fromMoney(action.payload.value))
 		}
 	}
 })
 
 export default Slice.reducer
 
-export const {updateRequestField, updateSchedule} = Slice.actions
+export const {updateRequestField, updateSchedule, formatRequestField} = Slice.actions

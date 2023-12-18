@@ -1,6 +1,6 @@
 import React from "react"
 import {useDispatch} from "react-redux"
-import {State, updateRequestField} from "./redux/reducer"
+import {formatRequestField, State, updateRequestField} from "./redux/reducer"
 
 interface FormProps {
 	state: State
@@ -12,6 +12,9 @@ export const Form = (props: FormProps) => {
 	const update = (target: EventTarget & HTMLInputElement) =>
 		dispatch(updateRequestField({key: target.id, value: (target.type === "checkbox") ? target.checked : target.value}))
 
+	const format = (target: EventTarget & HTMLInputElement) =>
+		dispatch(formatRequestField({key: target.id, value: target.value}))
+
 	return (
 		<form className="form-horizontal" role="form">
 			<div className="row mt-2 text-start">
@@ -20,14 +23,18 @@ export const Form = (props: FormProps) => {
 				</div>
 				<div className="col-3">
 					<input id="startAmount" name="startAmount" value={props.state.startAmount} className="form-control" placeholder="Start amount"
-						   onChange={(e) => update(e.target)}/>
+						   onChange={(e) => update(e.target)}
+						   onBlur={(e) => format(e.target)}
+					/>
 				</div>
 				<div className="col-3">
 					<label htmlFor="monthlyAmount">Monthly deposit, $</label>
 				</div>
 				<div className="col-3">
 					<input id="monthlyAmount" name="monthlyAmount" value={props.state.monthlyAmount} className="form-control" placeholder="Monthly amount"
-						   onChange={(e) => update(e.target)}/>
+						   onChange={(e) => update(e.target)}
+						   onBlur={(e) => format(e.target)}
+					/>
 				</div>
 			</div>
 			<div className="row mt-2 text-start">
@@ -43,7 +50,9 @@ export const Form = (props: FormProps) => {
 				</div>
 				<div className="col-3">
 					<input id="rate" name="rate" value={props.state.rate} className="form-control" placeholder="%"
-						   onChange={(e) => update(e.target)}/>
+						   onChange={(e) => update(e.target)}
+						   onBlur={(e) => format(e.target)}
+					/>
 				</div>
 			</div>
 			<div className="row mt-2 text-left">
@@ -51,7 +60,10 @@ export const Form = (props: FormProps) => {
 					<label htmlFor="tax">Income Tax, %</label>
 				</div>
 				<div className="col-3">
-					<input id="tax" value={props.state.tax} className="form-control" placeholder="%" onChange={(e) => update(e.target)}/>
+					<input id="tax" value={props.state.tax} className="form-control" placeholder="%"
+						   onChange={(e) => update(e.target)}
+						   onBlur={(e) => format(e.target)}
+					/>
 				</div>
 			</div>
 			<div className="row mt-2 text-left">
@@ -83,7 +95,9 @@ export const Form = (props: FormProps) => {
 				</div>
 				<div className="col-3">
 					<input id="targetIncome" value={props.state.targetIncome} className="form-control" placeholder="Target income, $"
-						   onChange={(e) => update(e.target)}/>
+						   onChange={(e) => update(e.target)}
+						   onBlur={(e) => format(e.target)}
+					/>
 				</div>
 				<div className="col-sm-6">
 					&nbsp;
