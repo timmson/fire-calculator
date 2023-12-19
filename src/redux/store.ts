@@ -1,6 +1,6 @@
 import {configureStore} from "@reduxjs/toolkit"
 import {Slice} from "./reducer"
-import {loadState} from "./persiste"
+import {loadState} from "./persist-query"
 
 export const Reducers = {}
 const slices = [Slice]

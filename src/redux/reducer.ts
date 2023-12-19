@@ -31,14 +31,14 @@ export interface State {
 }
 
 const initialState: State = {
-	startAmount: "50 000.00",
-	monthlyAmount: "10 000.00",
-	startDate: new Intl.DateTimeFormat("ru").format(new Date()),
-	rate: "7.5",
-	tax: "13.0",
+	startAmount: "",
+	monthlyAmount: "",
+	startDate: "",
+	rate: "",
+	tax: "",
 	taxContributionRecover: false,
 	taxIncomeFree: false,
-	targetIncome: "50 000.00",
+	targetIncome: "",
 	schedule: {
 		termInYear: 0,
 		targetAmount: "",

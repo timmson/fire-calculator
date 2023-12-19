@@ -7,7 +7,7 @@ import {Store} from "./redux/store"
 import {App} from "./app"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faTelegram} from "@fortawesome/free-brands-svg-icons"
-import {saveState} from "./redux/persiste"
+import {saveState} from "./redux/persist-query"
 
 const currentYear = new Date().getFullYear()
 const shareUrl = () => {
@@ -31,18 +31,3 @@ root.render(
 		</div>
 	</div>
 )
-
-
-//const params = new URL(window.location.href).searchParams
-
-/*const initialState = {
-	startAmount: params.get("startAmount") || "100000",
-	monthlyAmount: params.get("monthlyAmount") || "50000",
-	startDate: params.get("startDate") || new Intl.DateTimeFormat("ru").format(new Date()),
-	rate: params.get("rate") || 7,
-	tax: params.get("tax") || 13,
-	taxPrivilege: params.get("taxPrivilege") || Privilege.NONE,
-	taxPrivilegeAmount: 400000,
-	targetIncome: params.get("targetIncome") || "50000",
-	schedule: {}
-}*/
