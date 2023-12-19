@@ -4,7 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faArrowAltCircleDown, faArrowAltCircleUp} from "@fortawesome/free-regular-svg-icons"
 
 interface SchedulePros {
-	schedule: StateSchedule
+    schedule: StateSchedule
 }
 
 export const Schedule = (props: SchedulePros) => (
@@ -30,14 +30,17 @@ export const Schedule = (props: SchedulePros) => (
 				<table id="schedule" className="table table-hover table-bordered w-100 border-dark">
 					<thead>
 						<tr>
-							<th>Дата</th>
-							<th>Входящих баланс, ₽</th>
-							<th>Взнос, ₽</th>
-							<th>Вычет, ₽</th>
-							<th>Дивиденды/купоны, ₽</th>
+                            <th rowSpan={2}>Дата</th>
+                            <th rowSpan={2}>Входящих баланс, ₽</th>
+                            <th rowSpan={2}>Прирост, ₽</th>
+                            <th colSpan={4}>включая</th>
+                            <th rowSpan={2}>Исходящих баланс, ₽</th>
+                        </tr>
+                        <tr>
+                            <th>Пополнение, ₽</th>
+                            <th>Вычет на взнос, ₽</th>
+                            <th>Доход, ₽</th>
 							<th>Налог, ₽</th>
-							<th>Прирост, ₽</th>
-							<th>Исходящих баланс, ₽</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -46,11 +49,11 @@ export const Schedule = (props: SchedulePros) => (
 								<tr key={index}>
 									<td>{increment.date}</td>
 									<td>{increment.initialBalance}</td>
+                                    <td>{increment.incrementAmount}</td>
 									<td>{increment.monthlyAmount}</td>
 									<td>{increment.recoverAmount}</td>
 									<td>{increment.dividendAmount}</td>
 									<td>{increment.taxAmount}</td>
-									<td>{increment.incrementAmount}</td>
 									<td>{increment.finalBalance}</td>
 								</tr>
 							))
