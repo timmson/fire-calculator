@@ -13,6 +13,7 @@ const fields = {
 
 export const loadState = () => {
 	const state = {
+		taxContributionRecoverLimit: "400 000.00",
 		schedule: {
 			termInYear: 0,
 			targetAmount: "",

@@ -13,7 +13,7 @@ export const buildSchedule = (state: State): StateSchedule => {
 		targetIncome: fromMoney(state.targetIncome),
 		taxRate: fromMoney(state.tax) / 100,
 		taxContributionRecover: state.taxContributionRecover,
-		taxContributionRecoverLimit: 400000.00,
+		taxContributionRecoverLimit: fromMoney(state.taxContributionRecoverLimit),
 		taxIncomeFree: state.taxIncomeFree,
 	}
 

@@ -26,6 +26,7 @@ export interface State {
 	tax: string
 	taxContributionRecover: boolean
 	taxIncomeFree: boolean
+	taxContributionRecoverLimit: string
 	targetIncome: string
 	schedule: StateSchedule
 }
@@ -38,6 +39,7 @@ const initialState: State = {
 	tax: "",
 	taxContributionRecover: false,
 	taxIncomeFree: false,
+	taxContributionRecoverLimit: "",
 	targetIncome: "",
 	schedule: {
 		termInYear: 0,

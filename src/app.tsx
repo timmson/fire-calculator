@@ -15,9 +15,8 @@ export const App = () => {
 	}, [])
 
 	return (
-		<div className="container" style={{marginTop: 0, paddingTop: 0}}>
+		<div style={{marginTop: 0, paddingTop: 0}}>
 			<Form state={state}/>
-			<hr/>
 			<Schedule schedule={state.schedule}/>
 		</div>
 	)

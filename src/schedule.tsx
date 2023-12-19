@@ -1,5 +1,7 @@
 import React from "react"
 import {StateSchedule} from "./redux/reducer"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faArrowAltCircleDown, faArrowAltCircleUp} from "@fortawesome/free-regular-svg-icons"
 
 interface SchedulePros {
 	schedule: StateSchedule
@@ -7,29 +9,35 @@ interface SchedulePros {
 
 export const Schedule = (props: SchedulePros) => (
 	<>
-		<div className="row mt-2">
-			<div className="col-9">
-				<div style={{color: "#fd680e"}}>
-					{props.schedule.targetAmount}, {props.schedule.lastPaymentDate} {props.schedule.termInYear}Y
-				</div>
+		<div className="row text-start mt-2 orange">
+			<div className="col-4 text-center">
+				<b>Необходимый капитал, ₽</b>: {props.schedule.targetAmount}
 			</div>
-			<div className="col-3 text-right">
-				<a id="header" href="#footer">[Bottom &darr;]</a>
+			<div className="col-4 text-center">
+				<b>Инвестировать до</b>: {props.schedule.lastPaymentDate}
+			</div>
+			<div className="col-4 text-center">
+				<b>Срок инвестиций</b>: {props.schedule.termInYear} год(а)/лет
 			</div>
 		</div>
-		<div className="row">
+		<div className="row text-end mt-1">
+			<div className="col">
+				<a href="#footer" id="header">[Вниз <FontAwesomeIcon icon={faArrowAltCircleDown}/>]</a>
+			</div>
+		</div>
+		<div className="row mt-2">
 			<div className="col-12 text-center">
-				<table id="schedule" className="table-bordered w-100">
+				<table id="schedule" className="table table-hover table-bordered w-100 border-dark">
 					<thead>
 						<tr>
-							<th>Date</th>
-							<th>Initial balance, $</th>
-							<th>Deposit, $</th>
-							<th>Recover, $</th>
-							<th>Dividends, $</th>
-							<th>Tax, $</th>
-							<th>Increment, $</th>
-							<th>Final balance, $</th>
+							<th>Дата</th>
+							<th>Входящих баланс, ₽</th>
+							<th>Взнос, ₽</th>
+							<th>Вычет, ₽</th>
+							<th>Дивиденды/купоны, ₽</th>
+							<th>Налог, ₽</th>
+							<th>Прирост, ₽</th>
+							<th>Исходящих баланс, ₽</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -52,8 +60,8 @@ export const Schedule = (props: SchedulePros) => (
 			</div>
 		</div>
 		<div className="row">
-			<div className="col-sm-12 text-right">
-				<a id="footer" href="#header">[Top &uarr;]</a>
+			<div className="col-12 text-end ps-2">
+				<a href="#header" id="footer">[Вверх <FontAwesomeIcon icon={faArrowAltCircleUp}/>]</a>
 			</div>
 		</div>
 	</>
