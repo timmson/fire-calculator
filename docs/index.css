@@ -13242,7 +13242,7 @@ textarea.form-control-lg {
 }
 
 html, body {
-    font-size: 16pt
+    font-size: 1.1em
 }
 
 .orange {
@@ -13250,36 +13250,36 @@ html, body {
 }
 
 .table-bordered {
-    font-size: 0.8em
+    font-size: 0.7em
 }
 
 .desktop {
-    display: table-row
-}
-
-.desktop-cell {
-    display: table-cell
-}
-
-.mobile {
     display: none
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) {
+.desktop-cell {
+    display: none
+}
+
+.mobile {
+    display: table-row
+}
+
+@media (min-width: 670px) {
     html, body {
-        font-size: 13pt
+        font-size: 0.9em
     }
 
     .desktop {
-        display: none
+        display: table-row
     }
 
     .desktop-cell {
-        display: none
+        display: table-cell
     }
 
     .mobile {
-        display: table-row
+        display: none
     }
 }
 
