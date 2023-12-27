@@ -18,7 +18,9 @@ export const Form = (props: FormProps) => {
 	return (
 		<form className="form-horizontal" role="form">
 			<div className="row">
-				<h2 className={"orange text-center"}>Калькулятор инерционного дохода</h2>
+				<div className="col">
+					<h2 className={"orange text-center"}>Калькулятор инерционного дохода</h2>
+				</div>
 			</div>
 			<div className="row text-start">
 				<div className="col-lg-3 mt-2">
