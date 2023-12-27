@@ -9,14 +9,14 @@ interface SchedulePros {
 
 export const Schedule = (props: SchedulePros) => (
 	<>
-		<div className="row text-start mt-2 orange">
-			<div className="col-4 text-center">
-				<b>Необходимый капитал, ₽</b>: {props.schedule.targetAmount}
+		<div className="row text-start mt-4 orange">
+			<div className="col-lg-4 text-center">
+				<b>Капитал, ₽</b>: {props.schedule.targetAmount}
 			</div>
-			<div className="col-4 text-center">
+			<div className="col-lg-4 text-center">
 				<b>Инвестировать до</b>: {props.schedule.lastPaymentDate}
 			</div>
-			<div className="col-4 text-center">
+			<div className="col-lg-4 text-center">
 				<b>Срок инвестиций</b>: {props.schedule.termInYear} год(а)/лет
 			</div>
 		</div>
@@ -29,18 +29,24 @@ export const Schedule = (props: SchedulePros) => (
 			<div className="col-12 text-center">
 				<table id="schedule" className="table table-hover table-bordered w-100 border-dark">
 					<thead>
-						<tr>
-                            <th rowSpan={2}>Дата</th>
-                            <th rowSpan={2}>Входящих баланс, ₽</th>
-                            <th rowSpan={2}>Прирост, ₽</th>
-                            <th colSpan={4}>включая</th>
-                            <th rowSpan={2}>Исходящих баланс, ₽</th>
-                        </tr>
-                        <tr>
-                            <th>Пополнение, ₽</th>
-                            <th>Вычет на взнос, ₽</th>
-                            <th>Доход, ₽</th>
+					<tr className={"desktop"}>
+						<th rowSpan={2}><p>Дата</p></th>
+						<th rowSpan={2}>Входящих баланс, ₽</th>
+						<th rowSpan={2}>Прирост, ₽</th>
+						<th colSpan={4}>включая</th>
+						<th rowSpan={2}>Исходящих баланс, ₽</th>
+					</tr>
+					<tr className={"desktop"}>
+						<th>Пополнение, ₽</th>
+						<th>Вычет на взнос, ₽</th>
+						<th>Доход, ₽</th>
 							<th>Налог, ₽</th>
+					</tr>
+					<tr className={"mobile"}>
+						<th><p>Дата</p></th>
+						<th>Входящих баланс, ₽</th>
+						<th>Прирост, ₽</th>
+						<th>Исходящих баланс, ₽</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -49,11 +55,11 @@ export const Schedule = (props: SchedulePros) => (
 								<tr key={index}>
 									<td>{increment.date}</td>
 									<td>{increment.initialBalance}</td>
-                                    <td>{increment.incrementAmount}</td>
-									<td>{increment.monthlyAmount}</td>
-									<td>{increment.recoverAmount}</td>
-									<td>{increment.dividendAmount}</td>
-									<td>{increment.taxAmount}</td>
+									<td>{increment.incrementAmount}</td>
+									<td className={"desktop-cell"}>{increment.monthlyAmount}</td>
+									<td className={"desktop-cell"}>{increment.recoverAmount}</td>
+									<td className={"desktop-cell"}>{increment.dividendAmount}</td>
+									<td className={"desktop-cell"}>{increment.taxAmount}</td>
 									<td>{increment.finalBalance}</td>
 								</tr>
 							))
