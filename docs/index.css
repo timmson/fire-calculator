@@ -13266,10 +13266,6 @@ html, body {
 }
 
 @media (min-width: 670px) {
-    html, body {
-        font-size: 0.9em
-    }
-
     .desktop {
         display: table-row
     }
