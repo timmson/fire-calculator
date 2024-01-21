@@ -102,7 +102,7 @@ export const Form = (props: FormProps) => {
 					</div>
 				</div>
 				<div className="col-lg-4 mt-2">
-					<label htmlFor="taxIncomeRecoverLimit">Максимальная сумма взноса в год, ₽</label>
+					<label htmlFor="taxIncomeRecoverLimit">Максимальная сумма дохода в год, ₽</label>
 				</div>
 				<div className="col-lg-3 mt-2">
 					<input id="taxIncomeRecoverLimit" value={"30 000 000"} className="form-control" disabled={true}/>
