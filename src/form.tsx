@@ -52,7 +52,7 @@ export const Form = (props: FormProps) => {
 						   onChange={(e) => update(e.target)} type="text"/>
 				</div>
 				<div className="col-lg-3 mt-2">
-					<label htmlFor="rate">Прирост капитала в год, %</label>
+					<label htmlFor="rate">Средняя ставка сверх инфляции, %</label>
 				</div>
 				<div className="col-lg-3 mt-2">
 					<input id="rate" name="rate" value={props.state.rate} className="form-control" placeholder="%"

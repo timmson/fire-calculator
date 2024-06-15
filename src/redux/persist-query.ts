@@ -4,10 +4,10 @@ const fields = {
 	startAmount: "50 000.00",
 	monthlyAmount: "10 000.00",
 	startDate: new Intl.DateTimeFormat("ru").format(new Date()),
-	rate: "7.5",
-	tax: "13.0",
-	taxContributionRecover: false,
-	taxIncomeFree: false,
+	rate: "4.00",
+	tax: "13.00",
+	taxContributionRecover: true,
+	taxIncomeFree: true,
 	targetIncome: "50 000.00"
 }
 
