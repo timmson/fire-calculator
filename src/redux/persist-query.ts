@@ -4,12 +4,11 @@ const fields = {
 	startAmount: "50 000.00",
 	monthlyAmount: "10 000.00",
 	startDate: new Intl.DateTimeFormat("ru").format(new Date()),
-	incomeRate: "7.50",
+	rate: "7.5",
 	tax: "13.0",
 	taxContributionRecover: false,
 	taxIncomeFree: false,
-	targetIncome: "50 000.00",
-	passiveRate: "4.00"
+	targetIncome: "50 000.00"
 }
 
 export const loadState = () => {
