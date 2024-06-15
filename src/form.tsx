@@ -52,10 +52,10 @@ export const Form = (props: FormProps) => {
 						   onChange={(e) => update(e.target)} type="text"/>
 				</div>
 				<div className="col-lg-3 mt-2">
-					<label htmlFor="rate">Прирост капитала в год, %</label>
+					<label htmlFor="incomeRate">Ставка инвестирования, %</label>
 				</div>
 				<div className="col-lg-3 mt-2">
-					<input id="rate" name="rate" value={props.state.rate} className="form-control" placeholder="%"
+					<input id="incomeRate" name="incomeRate" value={props.state.incomeRate} className="form-control" placeholder="%"
 						   onChange={(e) => update(e.target)}
 						   onBlur={(e) => format(e.target)}
 					/>
@@ -114,6 +114,15 @@ export const Form = (props: FormProps) => {
 				</div>
 				<div className="col-lg-3 mt-2">
 					<input id="targetIncome" value={props.state.targetIncome} className="form-control" placeholder="Target income, $"
+						   onChange={(e) => update(e.target)}
+						   onBlur={(e) => format(e.target)}
+					/>
+				</div>
+				<div className="col-lg-3 mt-2">
+					<label htmlFor="passiveRate">Ставка изъятия, %</label>
+				</div>
+				<div className="col-lg-3 mt-2">
+					<input id="passiveRate" value={props.state.passiveRate} className="form-control" placeholder="Passive rate, %"
 						   onChange={(e) => update(e.target)}
 						   onBlur={(e) => format(e.target)}
 					/>

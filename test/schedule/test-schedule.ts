@@ -10,6 +10,7 @@ describe("Schedule should", () => {
 			monthlyAmount: 10,
 			targetIncome: 5,
 			incomeRate: 12 / 100,
+			passiveRate: 4 / 100,
 			taxRate: 13 / 100,
 			taxContributionRecover: false,
 			taxIncomeFree: false,
@@ -19,10 +20,10 @@ describe("Schedule should", () => {
 		const scheduleBuilder = new ScheduleBuilder(request)
 		const schedule = scheduleBuilder.build()
 
-		expect(schedule.increments).toHaveLength(40)
-		expect(schedule.targetAmount).toEqual(602.1511881041255)
-		expect(schedule.lastPaymentDate).toEqual(new Date(2015, 3, 25))
-		expect(schedule.termInYear).toEqual(4)
+		expect(schedule.increments).toHaveLength(88)
+		expect(schedule.targetAmount).toEqual(1505.2175824050166)
+		expect(schedule.lastPaymentDate).toEqual(new Date(2019, 3, 25))
+		expect(schedule.termInYear).toEqual(8)
 	})
 
 	test("buildIncrement with positive dividends and IIA type A", () => {
@@ -32,6 +33,7 @@ describe("Schedule should", () => {
 			monthlyAmount: 10,
 			targetIncome: 5,
 			incomeRate: 12 / 100,
+			passiveRate: 4 / 100,
 			taxRate: 13 / 100,
 			taxContributionRecover: true,
 			taxIncomeFree: false,
@@ -57,6 +59,7 @@ describe("Schedule should", () => {
 			monthlyAmount: 10,
 			targetIncome: 5,
 			incomeRate: 12 / 100,
+			passiveRate: 4 / 100,
 			taxRate: 13 / 100,
 			taxContributionRecover: false,
 			taxIncomeFree: false,
@@ -82,6 +85,7 @@ describe("Schedule should", () => {
 			monthlyAmount: 10,
 			targetIncome: 5,
 			incomeRate: 12 / 100,
+			passiveRate: 4 / 100,
 			taxRate: 0,
 			taxContributionRecover: false,
 			taxIncomeFree: false,
@@ -106,6 +110,7 @@ describe("Schedule should", () => {
 			monthlyAmount: 10,
 			targetIncome: 5,
 			incomeRate: 12 / 100,
+			passiveRate: 4 / 100,
 			taxRate: 0,
 			taxContributionRecover: false,
 			taxContributionRecoverLimit: 0,

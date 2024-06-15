@@ -14,8 +14,9 @@ class ScheduleBuilder {
 		schedule.increments = [initialIncrement]
 
 		let i = 1
-		let currentIncome = schedule.increments[schedule.increments.length - 1].dividendAmount
-		while (currentIncome < this.request.targetIncome) {
+		//let currentIncome = schedule.increments[schedule.increments.length - 1].dividendAmount
+		let passiveIncome = schedule.increments[schedule.increments.length - 1].finalBalance * this.request.passiveRate / 12
+		while (passiveIncome < this.request.targetIncome) {
 			const lastDate = schedule.increments[i - 1].date
 
 			const increment = this.buildIncrement(
@@ -25,7 +26,8 @@ class ScheduleBuilder {
 
 			schedule.increments.push(increment)
 
-			currentIncome = schedule.increments[schedule.increments.length - 1].dividendAmount + schedule.increments[schedule.increments.length - 1].projectedTaxAmount
+			//currentIncome = schedule.increments[schedule.increments.length - 1].dividendAmount + schedule.increments[schedule.increments.length - 1].projectedTaxAmount
+			passiveIncome = schedule.increments[schedule.increments.length - 1].finalBalance * this.request.passiveRate / 12
 			i++
 		}
 
