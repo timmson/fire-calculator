@@ -29,24 +29,24 @@ export const Schedule = (props: SchedulePros) => (
 			<div className="col-12 text-center">
 				<table id="schedule" className="table table-hover table-bordered w-100 border-dark">
 					<thead>
-					<tr className={"desktop"}>
-						<th rowSpan={2}><p>Дата</p></th>
-						<th rowSpan={2}>Входящих баланс, ₽</th>
-						<th rowSpan={2}>Прирост, ₽</th>
-						<th colSpan={4}>включая</th>
-						<th rowSpan={2}>Исходящих баланс, ₽</th>
-					</tr>
-					<tr className={"desktop"}>
-						<th>Пополнение, ₽</th>
-						<th>Вычет на взнос, ₽</th>
-						<th>Доход, ₽</th>
+						<tr className={"desktop"}>
+							<th rowSpan={2}><p>Дата</p></th>
+							<th rowSpan={2}>Входящих баланс, ₽</th>
+							<th rowSpan={2}>Прирост, ₽</th>
+							<th colSpan={4}>включая</th>
+							<th rowSpan={2}>Исходящих баланс, ₽</th>
+						</tr>
+						<tr className={"desktop"}>
+							<th>Пополнение, ₽</th>
+							<th>Вычет на взнос, ₽</th>
+							<th>Доход, ₽</th>
 							<th>Налог, ₽</th>
-					</tr>
-					<tr className={"mobile"}>
-						<th><p>Дата</p></th>
-						<th>Входящих баланс, ₽</th>
-						<th>Прирост, ₽</th>
-						<th>Исходящих баланс, ₽</th>
+						</tr>
+						<tr className={"mobile"}>
+							<th><p>Дата</p></th>
+							<th>Входящих баланс, ₽</th>
+							<th>Прирост, ₽</th>
+							<th>Исходящих баланс, ₽</th>
 						</tr>
 					</thead>
 					<tbody>
