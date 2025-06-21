@@ -51,12 +51,12 @@ class ScheduleBuilder {
 		increment.projectedTaxAmount = -increment.dividendAmount * increment.taxRate
 
 		if (increment.initialBalance >= 0 && monthlyDeposit >= 0) {
-			increment.recoverAmount = this.request.taxContributionRecover ? Math.min(this.request.taxContributionRecoverLimit / 12, monthlyDeposit) * increment.taxRate : 0
+			increment.recoverAmount = this.request.taxPrivilege ? Math.min(this.request.taxContributionRecoverLimit / 12, monthlyDeposit) * increment.taxRate : 0
 		}
 
 		if (increment.dividendAmount >= 0) {
 			increment.monthlyAmount = monthlyDeposit
-			increment.taxAmount = this.request.taxIncomeFree ? 0 : increment.projectedTaxAmount
+			increment.taxAmount = this.request.taxPrivilege ? 0 : increment.projectedTaxAmount
 		} else {
 			increment.taxAmount = 0
 			increment.incrementAmount = monthlyDeposit
