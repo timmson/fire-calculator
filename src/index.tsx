@@ -19,7 +19,7 @@ Store.subscribe(() => saveState(Store.getState()))
 const root = createRoot(document.getElementById("app"))
 root.render(
 	<div className="container-xxl" style={{marginTop: 0, paddingTop: 0}}>
-		<Provider store={Store}><App/></Provider>
+		<Provider store={Store} children={App}><App/></Provider>
 		<div className="row mt-3">
 			<div className="col text-end">
 				<a href="#" target="_blank" onClick={() => shareUrl()}>
