@@ -6,14 +6,15 @@ const fields = {
 	startDate: new Intl.DateTimeFormat("ru").format(new Date()),
 	rate: "4.00",
 	tax: "13.00",
-	taxContributionRecover: true,
 	taxIncomeFree: true,
-	targetIncome: "50 000.00"
+	targetIncome: "50 000.00",
+	targetAmount: "10 000 000.00"
 }
 
 export const loadState = () => {
 	const state = {
 		taxContributionRecoverLimit: "400 000.00",
+		taxIncomeRecoverLimit: "30 000 000",
 		schedule: {
 			termInYear: 0,
 			targetAmount: "",

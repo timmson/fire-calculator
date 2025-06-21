@@ -11,9 +11,9 @@ describe("Schedule should", () => {
 			targetIncome: 5,
 			incomeRate: 12 / 100,
 			taxRate: 13 / 100,
-			taxContributionRecover: false,
-			taxIncomeFree: false,
-			taxContributionRecoverLimit: 0
+			taxPrivilege: false,
+			taxContributionRecoverLimit: 0,
+			taxIncomeRecoverLimit: 0
 		}
 
 		const scheduleBuilder = new ScheduleBuilder(request)
@@ -33,9 +33,9 @@ describe("Schedule should", () => {
 			targetIncome: 5,
 			incomeRate: 12 / 100,
 			taxRate: 13 / 100,
-			taxContributionRecover: true,
-			taxIncomeFree: false,
-			taxContributionRecoverLimit: 400000
+			taxPrivilege: true,
+			taxContributionRecoverLimit: 400000,
+			taxIncomeRecoverLimit: 3000000
 		}
 
 		const scheduleBuilder = new ScheduleBuilder(request)
@@ -45,9 +45,9 @@ describe("Schedule should", () => {
 		expect(increment.monthlyRate).toEqual(request.incomeRate / 12)
 		expect(increment.dividendAmount).toEqual(1)
 		expect(increment.monthlyAmount).toEqual(10)
-		expect(increment.incrementAmount).toEqual(12.17)
-		expect(increment.taxAmount).toEqual(-0.13)
-		expect(increment.finalBalance).toEqual(112.17)
+		expect(increment.incrementAmount).toEqual(12.3)
+		expect(increment.taxAmount).toEqual(0)
+		expect(increment.finalBalance).toEqual(112.3)
 	})
 
 	test("buildIncrement with positive dividends and tax", () => {
@@ -58,9 +58,9 @@ describe("Schedule should", () => {
 			targetIncome: 5,
 			incomeRate: 12 / 100,
 			taxRate: 13 / 100,
-			taxContributionRecover: false,
-			taxIncomeFree: false,
-			taxContributionRecoverLimit: 0
+			taxPrivilege: false,
+			taxContributionRecoverLimit: 0,
+			taxIncomeRecoverLimit: 0
 		}
 
 		const scheduleBuilder = new ScheduleBuilder(request)
@@ -83,9 +83,9 @@ describe("Schedule should", () => {
 			targetIncome: 5,
 			incomeRate: 12 / 100,
 			taxRate: 0,
-			taxContributionRecover: false,
-			taxIncomeFree: false,
-			taxContributionRecoverLimit: 0
+			taxPrivilege: false,
+			taxContributionRecoverLimit: 0,
+			taxIncomeRecoverLimit: 0
 		}
 
 		const scheduleBuilder = new ScheduleBuilder(request)
@@ -107,9 +107,9 @@ describe("Schedule should", () => {
 			targetIncome: 5,
 			incomeRate: 12 / 100,
 			taxRate: 0,
-			taxContributionRecover: false,
+			taxPrivilege: false,
 			taxContributionRecoverLimit: 0,
-			taxIncomeFree: false
+			taxIncomeRecoverLimit: 0
 		}
 
 		const date = new Date(2011, 12, 25)

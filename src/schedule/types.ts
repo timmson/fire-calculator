@@ -3,9 +3,9 @@ export type RequestType = {
     monthlyAmount: number,
     startDate: Date,
     incomeRate: number,
-	taxContributionRecover: boolean
+    taxPrivilege: boolean
     taxContributionRecoverLimit: number,
-	taxIncomeFree: boolean
+    taxIncomeRecoverLimit: number,
     targetIncome: number,
     taxRate: number
 }

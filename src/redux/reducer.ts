@@ -24,9 +24,10 @@ export interface State {
 	startDate: string
 	rate: string
 	tax: string
-	taxContributionRecover: boolean
-	taxIncomeFree: boolean
+    taxPrivilege: boolean;
 	taxContributionRecoverLimit: string
+	taxIncomeRecoverLimit: string
+	targetAmount: string
 	targetIncome: string
 	schedule: StateSchedule
 }
@@ -37,10 +38,11 @@ const initialState: State = {
 	startDate: "",
 	rate: "",
 	tax: "",
-	taxContributionRecover: false,
-	taxIncomeFree: false,
+	taxPrivilege: false,
 	taxContributionRecoverLimit: "",
+	taxIncomeRecoverLimit: "",
 	targetIncome: "",
+	targetAmount: "",
 	schedule: {
 		termInYear: 0,
 		targetAmount: "",

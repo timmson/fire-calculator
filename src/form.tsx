@@ -73,44 +73,47 @@ export const Form = (props: FormProps) => {
 				</div>
 			</div>
 			<div className="row text-start mt-2 pt-2 border-3 border-top">
-				<div className="col-lg-3 mt-2">
-					<label className="form-check-label" htmlFor="taxContributionRecover">Вычет на взнос (ИИС А)</label>
+				<div className="col-lg-6 mt-2">
+					<label className="form-check-label" htmlFor="taxPrivilege">
+						<span>
+							ИИС 3-типа
+						</span>
+					</label>
 				</div>
-				<div className="col-lg-2 mt-2">
+				<div className="col-lg-6 mt-2">
 					<div className="form-check form-switch">
-						<input className="form-check-input" type="checkbox" role="switch" id="taxContributionRecover" name="taxContributionRecover"
-							   checked={props.state.taxContributionRecover}
+						<input className="form-check-input" type="checkbox" role="switch" id="taxPrivilege" name="taxPrivilege"
+							   checked={props.state.taxPrivilege}
 							   onChange={(e) => update(e.target)}/>
 					</div>
-				</div>
-				<div className="col-lg-4 mt-2">
-					<label htmlFor="taxContributionRecoverLimit">Максимальная сумма взноса в год, ₽</label>
-				</div>
-				<div className="col-lg-3 mt-2">
-					<input id="taxContributionRecoverLimit" value={props.state.taxContributionRecoverLimit} className="form-control" disabled={true}/>
 				</div>
 			</div>
 			<div className="row text-start mt-2">
 				<div className="col-lg-3 mt-2">
-					<label className="form-check-label" htmlFor="taxIncomeFree">Вычет на доход (ИИС Б)</label>
-				</div>
-				<div className="col-lg-2 mt-2">
-					<div className="form-check form-switch">
-						<input className="form-check-input" type="checkbox" role="switch" id="taxIncomeFree" name="taxIncomeFree"
-							   checked={props.state.taxIncomeFree}
-							   onChange={(e) => update(e.target)}/>
-					</div>
-				</div>
-				<div className="col-lg-4 mt-2">
-					<label htmlFor="taxIncomeRecoverLimit">Максимальная сумма дохода в год, ₽</label>
+					<label htmlFor="taxContributionRecoverLimit">Льготный взнос в год, ₽</label>
 				</div>
 				<div className="col-lg-3 mt-2">
-					<input id="taxIncomeRecoverLimit" value={"30 000 000"} className="form-control" disabled={true}/>
+					<input id="taxContributionRecoverLimit" value={props.state.taxContributionRecoverLimit} className="form-control" disabled={true}/>
+				</div>
+				<div className="col-lg-3 mt-2">
+					<label htmlFor="taxIncomeRecoverLimit">Безналоговый доход, ₽</label>
+				</div>
+				<div className="col-lg-3 mt-2">
+					<input id="taxIncomeRecoverLimit" value={props.state.taxIncomeRecoverLimit} className="form-control" disabled={true}/>
 				</div>
 			</div>
 			<div className="row mt-2 text-start border-3 pt-2 pb-2 border-top border-bottom">
 				<div className="col-lg-3 mt-2">
-					<label htmlFor="targetIncome">Желаемый доход, ₽</label>
+					<label htmlFor="targetAmount">Целевой капитал, ₽</label>
+				</div>
+				<div className="col-lg-3 mt-2">
+					<input id="targetAmount" value={props.state.targetAmount} className="form-control" placeholder="Target capitalization, $"
+						   onChange={(e) => update(e.target)}
+						   onBlur={(e) => format(e.target)}
+					/>
+				</div>
+				<div className="col-lg-3 mt-2">
+					<label htmlFor="targetIncome">Целевой доход, ₽</label>
 				</div>
 				<div className="col-lg-3 mt-2">
 					<input id="targetIncome" value={props.state.targetIncome} className="form-control" placeholder="Target income, $"
