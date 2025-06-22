@@ -11,6 +11,7 @@ export const buildSchedule = (state: State): StateSchedule => {
 		monthlyAmount: fromMoney(state.monthlyAmount),
 		incomeRate: fromMoney(state.rate) / 100,
 		targetIncome: fromMoney(state.targetIncome),
+		targetAmount: fromMoney(state.targetAmount),
 		taxRate: fromMoney(state.tax) / 100,
 		taxPrivilege: state.taxPrivilege,
 		taxContributionRecoverLimit: fromMoney(state.taxContributionRecoverLimit),

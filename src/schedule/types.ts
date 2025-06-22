@@ -6,6 +6,7 @@ export type RequestType = {
     taxPrivilege: boolean
     taxContributionRecoverLimit: number,
     taxIncomeRecoverLimit: number,
+    targetAmount: number,
     targetIncome: number,
     taxRate: number
 }
