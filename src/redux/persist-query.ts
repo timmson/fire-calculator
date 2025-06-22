@@ -6,7 +6,7 @@ const fields = {
 	startDate: new Intl.DateTimeFormat("ru").format(new Date()),
 	rate: "4.00",
 	tax: "13.00",
-	taxIncomeFree: true,
+	taxPrivilege: true,
 	targetIncome: "50 000.00",
 	targetAmount: "10 000 000.00"
 }
