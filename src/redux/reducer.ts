@@ -59,15 +59,15 @@ export const Slice = createSlice({
 			state[action.payload.key] = action.payload.value
 			try {
 				state.schedule = buildSchedule(state)
-			} catch (ignore) {
-				//ignore
+			} catch {
+				// ignore errors
 			}
 		},
 		updateSchedule: (state: State) => {
 			try {
 				state.schedule = buildSchedule(state)
-			} catch (ignore) {
-				//ignore
+			} catch {
+				// ignore errors
 			}
 		},
 		formatRequestField: (state: State, action: PayloadAction<{ key: string, value: string }>) => {
